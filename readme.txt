@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-ima
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
 Tags:  image, slideshow, gallery 
 Requires at least: 3.0
-Tested up to: 3.4.2
-Stable tag: 9.1
+Tested up to: 3.5
+Stable tag: 9.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -97,6 +97,12 @@ http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow
 
 == Upgrade Notice ==
 
+= 9.2 =
+
+Tested up to WordPress 3.5
+Avoid registering the alternate jQuery.
+From this version we are using existing wordpress jQuery.
+
 = 9.1 =
 
 Tested up to 3.4.2
@@ -140,6 +146,12 @@ Javascript added as per W3C standard.
 First version		
 
 == Changelog ==
+
+= 9.2 =
+
+Tested up to WordPress 3.5
+Avoid registering the alternate jQuery.
+From this version we are using existing wordpress jQuery.
 
 = 9.1 =
 
