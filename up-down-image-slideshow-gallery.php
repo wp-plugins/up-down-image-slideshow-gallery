@@ -5,7 +5,7 @@ Plugin Name: Up down image slideshow gallery
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
 Description: Up down image slideshow gallery lets showcase images in a vertical move style. Single image at a time and pull one by one continually. This slideshow will pause on mouse over. The speed of the plugin gallery is customizable. Persistence of last viewed image supported, so when the user reloads the page, the slideshow continues from the last image.
 Author: Gopi.R
-Version: 9.2
+Version: 10.0
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
 Tags: slidshow, gallery
@@ -15,10 +15,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 global $wpdb, $wp_version;
 define("WP_udisg_TABLE", $wpdb->prefix . "udisg_plugin");
+define("WP_udisg_UNIQUE_NAME", "ivrss");
+define("WP_udisg_TITLE", "Up down image slideshow gallery");
+define('WP_udisg_LINK', 'Check official website for more information <a target="_blank" href="http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/">click here</a>');
+define('WP_udisg_FAV', 'http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/');
+
 
 function udisg() 
 {
-	
 	global $wpdb;
 	$udisg_package = "";
 	$udisg_title = get_option('udisg_title');
@@ -96,16 +100,16 @@ function udisg_install()
 		
 		$IsSql = "INSERT INTO `". WP_udisg_TABLE . "` (`udisg_path`, `udisg_link`, `udisg_target` , `udisg_title` , `udisg_order` , `udisg_status` , `udisg_type` , `udisg_date`)"; 
 		
-		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/up-down-image-slideshow-gallery/images/250x167_1.jpg', '#', '_blank', 'Image 1', '1', 'YES', 'widget', '0000-00-00 00:00:00');";
+		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/up-down-image-slideshow-gallery/images/250x167_1.jpg', '#', '_blank', 'Image 1', '1', 'YES', 'Widget', '0000-00-00 00:00:00');";
 		$wpdb->query($sSql);
 		
-		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/up-down-image-slideshow-gallery/images/250x167_2.jpg' ,'#', '_blank', 'Image 2', '2', 'YES', 'widget', '0000-00-00 00:00:00');";
+		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/up-down-image-slideshow-gallery/images/250x167_2.jpg' ,'#', '_blank', 'Image 2', '2', 'YES', 'Widget', '0000-00-00 00:00:00');";
 		$wpdb->query($sSql);
 		
-		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/up-down-image-slideshow-gallery/images/250x167_3.jpg', '#', '_blank', 'Image 3', '1', 'YES', 'sample', '0000-00-00 00:00:00');";
+		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/up-down-image-slideshow-gallery/images/250x167_3.jpg', '#', '_blank', 'Image 3', '1', 'YES', 'Sample', '0000-00-00 00:00:00');";
 		$wpdb->query($sSql);
 		
-		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/up-down-image-slideshow-gallery/images/250x167_4.jpg', '#', '_blank', 'Image 4', '2', 'YES', 'sample', '0000-00-00 00:00:00');";
+		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/up-down-image-slideshow-gallery/images/250x167_4.jpg', '#', '_blank', 'Image 4', '2', 'YES', 'Sample', '0000-00-00 00:00:00');";
 		$wpdb->query($sSql);
 
 	}
@@ -118,14 +122,14 @@ function udisg_install()
 	add_option('udisg_persist', "true");
 	add_option('udisg_slideduration', "300");
 	add_option('udisg_random', "YES");
-	add_option('udisg_type', "widget");
-
+	add_option('udisg_type', "Widget");
 }
 
 function udisg_control() 
 {
-	echo '<p>Up down image slideshow gallery.<br><br> To change the setting goto "Left right slideshow" link under SETTING menu. ';
-	echo '<a href="options-general.php?page=up-down-image-slideshow-gallery/up-down-image-slideshow-gallery.php">click here</a></p>';
+	echo '<p>To change the setting goto <b>Left right slideshow</b> link under Settings menu. ';
+	echo '<a href="options-general.php?page=up-down-image-slideshow-gallery">click here</a></p>';
+	echo WP_udisg_LINK;
 }
 
 function udisg_widget($args) 
@@ -141,85 +145,22 @@ function udisg_widget($args)
 function udisg_admin_options() 
 {
 	global $wpdb;
-	
-	echo "<div class='wrap'>";
-	echo "<h2>"; 
-	echo "Up down image slideshow gallery";
-	echo "</h2>";
-	$udisg_title = get_option('udisg_title');
-	$udisg_width = get_option('udisg_width');
-	$udisg_height = get_option('udisg_height');
-	$udisg_pause = get_option('udisg_pause');
-	$udisg_cycles = get_option('udisg_cycles');
-	$udisg_persist = get_option('udisg_persist');
-	$udisg_slideduration = get_option('udisg_slideduration');
-	$udisg_random = get_option('udisg_random');
-	$udisg_type = get_option('udisg_type');
-	
-	if (@$_POST['udisg_submit']) 
+	$current_page = isset($_GET['ac']) ? $_GET['ac'] : '';
+	switch($current_page)
 	{
-		$udisg_title = stripslashes($_POST['udisg_title']);
-		$udisg_width = stripslashes($_POST['udisg_width']);
-		$udisg_height = stripslashes($_POST['udisg_height']);
-		$udisg_pause = stripslashes($_POST['udisg_pause']);
-		$udisg_cycles = stripslashes($_POST['udisg_cycles']);
-		$udisg_persist = stripslashes($_POST['udisg_persist']);
-		$udisg_slideduration = stripslashes($_POST['udisg_slideduration']);
-		$udisg_random = stripslashes($_POST['udisg_random']);
-		$udisg_type = stripslashes($_POST['udisg_type']);
-
-		update_option('udisg_title', $udisg_title );
-		update_option('udisg_width', $udisg_width );
-		update_option('udisg_height', $udisg_height );
-		update_option('udisg_pause', $udisg_pause );
-		update_option('udisg_cycles', $udisg_cycles );
-		update_option('udisg_persist', $udisg_persist );
-		update_option('udisg_slideduration', $udisg_slideduration );
-		update_option('udisg_random', $udisg_random );
-		update_option('udisg_type', $udisg_type );
+		case 'edit':
+			include('pages/image-management-edit.php');
+			break;
+		case 'add':
+			include('pages/image-management-add.php');
+			break;
+		case 'set':
+			include('pages/image-setting.php');
+			break;
+		default:
+			include('pages/image-management-show.php');
+			break;
 	}
-	
-	echo '<form name="udisg_form" method="post" action="">';
-
-	echo '<p>Title:<br><input  style="width: 450px;" maxlength="200" type="text" value="';
-	echo $udisg_title . '" name="udisg_title" id="udisg_title" /> Widget title.</p>';
-
-	echo '<p>Width:<br><input  style="width: 100px;" maxlength="200" type="text" value="';
-	echo $udisg_width . '" name="udisg_width" id="udisg_width" /> Widget Width (only number).</p>';
-
-	echo '<p>Height:<br><input  style="width: 100px;" maxlength="200" type="text" value="';
-	echo $udisg_height . '" name="udisg_height" id="udisg_height" /> Widget Height (only number).</p>';
-
-	echo '<p>Pause:<br><input  style="width: 100px;" maxlength="4" type="text" value="';
-	echo $udisg_pause . '" name="udisg_pause" id="udisg_pause" /> Only Number / Pause between content change (millisec).</p>';
-
-	echo '<p>Cycles :<br><input  style="width: 100px;" type="text" value="';
-	echo $udisg_cycles . '" name="udisg_cycles" id="udisg_cycles" /> (only number)</p>';
-	
-	echo '<p>Persist:<br><input  style="width: 100px;" maxlength="4" type="text" value="';
-	echo $udisg_persist . '" name="udisg_persist" id="udisg_persist" /></p>';
-
-	echo '<p>Slideduration :<br><input  style="width: 100px;" type="text" value="';
-	echo $udisg_slideduration . '" name="udisg_slideduration" id="udisg_slideduration" /></p>';
-
-	echo '<p>Random :<br><input  style="width: 100px;" type="text" value="';
-	echo $udisg_random . '" name="udisg_random" id="udisg_random" /> (YES/NO)</p>';
-
-	echo '<p>Type:<br><input  style="width: 150px;" type="text" value="';
-	echo $udisg_type . '" name="udisg_type" id="udisg_type" /> This field is to group the images.</p>';
-
-	echo '<input name="udisg_submit" id="udisg_submit" class="button-primary" value="Submit" type="submit" />';
-
-	echo '</form>';
-	
-	echo '</div>';
-	?>
-    <div style="float:right;">
-	<input name="text_management1" lang="text_management" class="button-primary" onClick="location.href='options-general.php?page=up-down-image-slideshow-gallery/image-management.php'" value="Go to - Image Management" type="button" />
-    <input name="setting_management1" lang="setting_management" class="button-primary" onClick="location.href='options-general.php?page=up-down-image-slideshow-gallery/up-down-image-slideshow-gallery.php'" value="Go to - Gallery Setting" type="button" />
-    </div>
-    <?php
-	include("inc/help.php");
 }
 
 add_shortcode( 'up-slideshow', 'udisg_shortcode' );
@@ -227,15 +168,6 @@ add_shortcode( 'up-slideshow', 'udisg_shortcode' );
 function udisg_shortcode( $atts ) 
 {
 	global $wpdb;
-	
-	// [UD_IMAGE_GALLERY:TYPE=widget:WIDTH=320:HEIGHT=270:PAUSE=1000:RANDOM=YES]
-	//	$scode = $matches[1];
-	//	list($udisg_type_main, $udisg_width_main, $udisg_height_main, $udisg_pause_main, $udisg_random_main) = split("[:.-]", $scode);
-	//	list($udisg_type_cap, $udisg_type) = split('[=.-]', $udisg_type_main);
-	//	list($udisg_width_cap, $udisg_width) = split('[=.-]', $udisg_width_main);
-	//	list($udisg_height_cap, $udisg_height) = split('[=.-]', $udisg_height_main);
-	//	list($udisg_pause_cap, $udisg_pause) = split('[=.-]', $udisg_pause_main);
-	//	list($udisg_random_cap, $udisg_random) = split('[=.-]', $udisg_random_main);
 	
 	//[up-slideshow type="sample" width="250" height="170" pause="3000" random="YES"]
 	if ( ! is_array( $atts ) ) { return ''; }
@@ -300,8 +232,8 @@ function udisg_add_to_menu()
 {
 	if (is_admin()) 
 	{
-		add_options_page('Up down image slideshow gallery', 'Up down slideshow', 'manage_options', __FILE__, 'udisg_admin_options' );
-		add_options_page('Up down image slideshow gallery', '', 'manage_options', "up-down-image-slideshow-gallery/image-management.php",'' );
+		add_options_page('Up down image slideshow gallery', 'Up down slideshow', 'manage_options', 'up-down-image-slideshow-gallery', 'udisg_admin_options' );
+		//add_options_page('Up down image slideshow gallery', '', 'manage_options', "up-down-image-slideshow-gallery/image-management.php",'' );
 	}
 }
 

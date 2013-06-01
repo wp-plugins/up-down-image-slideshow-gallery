@@ -73,14 +73,14 @@ function udisg_delete(id)
 {
 	if(confirm("Do you want to delete this record?"))
 	{
-		document.frm_udisg_display.action="options-general.php?page=up-down-image-slideshow-gallery/image-management.php&AC=DEL&DID="+id;
+		document.frm_udisg_display.action="options-general.php?page=up-down-image-slideshow-gallery&ac=del&did="+id;
 		document.frm_udisg_display.submit();
 	}
 }	
 
 function udisg_redirect()
 {
-	window.location = "options-general.php?page=up-down-image-slideshow-gallery/image-management.php";
+	window.location = "options-general.php?page=up-down-image-slideshow-gallery";
 }
 
 function udisg_help()
