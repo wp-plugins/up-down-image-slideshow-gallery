@@ -1,6 +1,6 @@
 /**
  *     Up down image slideshow gallery
- *     Copyright (C) 2011 - 2013 www.gopiplus.com
+ *     Copyright (C) 2011 - 2014 www.gopiplus.com
  *     http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
  * 
  *     This program is free software: you can redistribute it and/or modify

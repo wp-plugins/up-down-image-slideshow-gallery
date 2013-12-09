@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-ima
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
 Tags:  image, slideshow, gallery 
 Requires at least: 3.4
-Tested up to: 3.6
-Stable tag: 10.0
+Tested up to: 3.8
+Stable tag: 10.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -29,27 +29,12 @@ Up down image slideshow gallery lets showcase images in a vertical move style. S
 *	Can use many time in the same page.
 *	Can stop the slideshow after some cycle.
 *	Short code available for pages and posts.
+*	Supports localization.
 
 We have three option to install and configure this Up down image slideshow gallery plugin. 
 
 http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
 
-**My other related plugins**
-
-[Left right image slideshow gallery](http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/)	
-[Up down image slideshow gallery](http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/)	
-[Information reel](http://www.gopiplus.com/work/2011/04/16/wordpress-plugin-information-reel/)	
-[News announcement scroll](http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/)		
-[Continuous rss scrolling](http://www.gopiplus.com/work/2010/09/05/continuous-rss-scrolling/)		
-[Continuous announcement scroller](http://www.gopiplus.com/work/2010/09/04/continuous-announcement-scroller/)		
-[Vertical scroll recent post](http://www.gopiplus.com/work/2010/07/18/vertical-scroll-recent-post/)		
-[Superb slideshow gallery](http://www.gopiplus.com/work/2010/10/10/superb-slideshow-gallery/)		
-[Email newsletter](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)			
-		 	
-To see my all plugin : [click here](http://www.gopiplus.com/work/plugin-list/)		
-
-Tags: Continuous, gallery, vertical, image, imagegallery, left right, plugin, reel, slideshow, widget, wordpress	
-	
 == Installation ==	
 
 **Installation Instruction & Configuration**  	
@@ -93,7 +78,16 @@ http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow
 
 1. http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
 
+2. http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
+
 == Upgrade Notice ==
+
+= 10.1 =
+
+1. Tested up to 3.8
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (udisg.po) available in the languages folder. Translators Welcome.
+3. Supports network multisite website (Manual table creation required).
 
 = 10.0 =
 
@@ -149,6 +143,13 @@ Javascript added as per W3C standard.
 First version		
 
 == Changelog ==
+
+= 10.1 =
+
+1. Tested up to 3.8
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (udisg.po) available in the languages folder. Translators Welcome.
+3. Supports network multisite website (Manual table creation required).
 
 = 10.0 =
 

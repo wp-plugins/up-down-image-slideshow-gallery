@@ -18,7 +18,7 @@ if (isset($_POST['frm_udisg_display']) && $_POST['frm_udisg_display'] == 'yes')
 	
 	if ($result != '1')
 	{
-		?><div class="error fade"><p><strong>Oops, selected details doesn't exist (1).</strong></p></div><?php
+		?><div class="error fade"><p><strong><?php _e('Oops, selected details doesnt exist', 'udisg'); ?></strong></p></div><?php
 	}
 	else
 	{
@@ -36,7 +36,7 @@ if (isset($_POST['frm_udisg_display']) && $_POST['frm_udisg_display'] == 'yes')
 			
 			//	Set success message
 			$udisg_success_msg = TRUE;
-			$udisg_success = __('Selected record was successfully deleted.', WP_udisg_UNIQUE_NAME);
+			$udisg_success = __('Selected record was successfully deleted.', 'udisg');
 		}
 	}
 	
@@ -48,73 +48,70 @@ if (isset($_POST['frm_udisg_display']) && $_POST['frm_udisg_display'] == 'yes')
 ?>
 <div class="wrap">
   <div id="icon-edit" class="icon32 icon32-posts-post"></div>
-    <h2><?php echo WP_udisg_TITLE; ?><a class="add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=up-down-image-slideshow-gallery&amp;ac=add">Add New</a></h2>
+    <h2><?php _e('Up down image slideshow gallery', 'udisg'); ?>
+	<a class="add-new-h2" href="<?php echo WP_UDISG_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New', 'udisg'); ?></a></h2>
     <div class="tool-box">
 	<?php
 		$sSql = "SELECT * FROM `".WP_udisg_TABLE."` order by udisg_type, udisg_order";
 		$myData = array();
 		$myData = $wpdb->get_results($sSql, ARRAY_A);
 		?>
-		<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/up-down-image-slideshow-gallery/pages/setting.js"></script>
+		<script language="JavaScript" src="<?php echo WP_UDISG_PLUGIN_URL; ?>/pages/setting.js"></script>
 		<form name="frm_udisg_display" method="post">
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
-            <th class="check-column" scope="row" scope="col"><input type="checkbox" name="udisg_group_item[]" /></td>
-			<th scope="col">Type</td>
-			<th scope="col">Reference</td>
-            <th scope="col">URL</td>
-			<th scope="col">Target</td>
-            <th scope="col">Order</td>
-            <th scope="col">Display</td>
+            <th class="check-column" scope="row"><input type="checkbox" name="udisg_group_item[]" /></th>
+			<th scope="col"><?php _e('Group/Type', 'udisg'); ?></th>
+			<th scope="col"><?php _e('Reference', 'udisg'); ?></th>
+            <th scope="col"><?php _e('URL', 'udisg'); ?></th>
+			<th scope="col"><?php _e('Target', 'udisg'); ?></th>
+            <th scope="col"><?php _e('Order', 'udisg'); ?></th>
+            <th scope="col"><?php _e('Display', 'udisg'); ?></th>
           </tr>
         </thead>
 		<tfoot>
           <tr>
-            <th class="check-column" scope="row" scope="col"><input type="checkbox" name="udisg_group_item[]" /></td>
-			<th scope="col">Type</td>
-			<th scope="col">Reference</td>
-            <th scope="col">URL</td>
-			<th scope="col">Target</td>
-            <th scope="col">Order</td>
-            <th scope="col">Display</td>
+            <th class="check-column" scope="row"><input type="checkbox" name="udisg_group_item[]" /></th>
+			<th scope="col"><?php _e('Group/Type', 'udisg'); ?></th>
+			<th scope="col"><?php _e('Reference', 'udisg'); ?></th>
+            <th scope="col"><?php _e('URL', 'udisg'); ?></th>
+			<th scope="col"><?php _e('Target', 'udisg'); ?></th>
+            <th scope="col"><?php _e('Order', 'udisg'); ?></th>
+            <th scope="col"><?php _e('Display', 'udisg'); ?></th>
           </tr>
         </tfoot>
 		<tbody>
 			<?php 
 			$i = 0;
-			$displayisthere = FALSE;
-			foreach ($myData as $data)
+			if(count($myData) > 0 )
 			{
-				if($data['udisg_status'] == 'YES') 
+				foreach ($myData as $data)
 				{
-					$displayisthere = TRUE; 
+					?>
+					<tr class="<?php if ($i&1) { echo'alternate'; } else { echo ''; }?>">
+						<td align="left"><input type="checkbox" value="<?php echo $data['udisg_id']; ?>" name="udisg_group_item[]"></td>
+						<td>
+						<strong><?php echo esc_html(stripslashes($data['udisg_type'])); ?></strong>
+						<div class="row-actions">
+							<span class="edit"><a title="Edit" href="<?php echo WP_UDISG_ADMIN_URL; ?>&amp;ac=edit&amp;did=<?php echo $data['udisg_id']; ?>"><?php _e('Edit', 'udisg'); ?></a> | </span>
+							<span class="trash"><a onClick="javascript:udisg_delete('<?php echo $data['udisg_id']; ?>')" href="javascript:void(0);"><?php _e('Delete', 'udisg'); ?></a></span> 
+						</div>
+						</td>
+						<td><?php echo esc_html(stripslashes($data['udisg_title'])); ?></td>
+						<td><a href="<?php echo $data['udisg_path']; ?>" target="_blank"><?php echo $data['udisg_path']; ?></a></td>
+						<td><?php echo esc_html(stripslashes($data['udisg_target'])); ?></td>
+						<td><?php echo esc_html(stripslashes($data['udisg_order'])); ?></td>
+						<td><?php echo esc_html(stripslashes($data['udisg_status'])); ?></td>
+					</tr>
+					<?php 
+					$i = $i+1; 
 				}
-				?>
-				<tr class="<?php if ($i&1) { echo'alternate'; } else { echo ''; }?>">
-					<td align="left"><input type="checkbox" value="<?php echo $data['udisg_id']; ?>" name="udisg_group_item[]"></th>
-					<td>
-					<strong><?php echo esc_html(stripslashes($data['udisg_type'])); ?></strong>
-					<div class="row-actions">
-						<span class="edit"><a title="Edit" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=up-down-image-slideshow-gallery&amp;ac=edit&amp;did=<?php echo $data['udisg_id']; ?>">Edit</a> | </span>
-						<span class="trash"><a onClick="javascript:udisg_delete('<?php echo $data['udisg_id']; ?>')" href="javascript:void(0);">Delete</a></span> 
-					</div>
-					</td>
-					<td><?php echo esc_html(stripslashes($data['udisg_title'])); ?></td>
-					<td><a href="<?php echo esc_html(stripslashes($data['udisg_path'])); ?>" target="_blank"><?php echo esc_html(stripslashes($data['udisg_path'])); ?></a></td>
-					<td><?php echo esc_html(stripslashes($data['udisg_target'])); ?></td>
-					<td><?php echo esc_html(stripslashes($data['udisg_order'])); ?></td>
-					<td><?php echo esc_html(stripslashes($data['udisg_status'])); ?></td>
-				</tr>
-				<?php 
-				$i = $i+1; 
-				} 
-			?>
-			<?php 
-			if ($displayisthere == FALSE) 
-			{ 
-				?><tr><td colspan="6" align="center">No records available.</td></tr><?php 
-			} 
+			}
+			else
+			{
+				?><tr><td colspan="6" align="center"><?php _e('No records available', 'udisg'); ?></td></tr><?php 
+			}
 			?>
 		</tbody>
         </table>
@@ -123,11 +120,15 @@ if (isset($_POST['frm_udisg_display']) && $_POST['frm_udisg_display'] == 'yes')
       </form>	
 	  <div class="tablenav">
 	  <h2>
-	  <a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=up-down-image-slideshow-gallery&amp;ac=add">Add New</a>
-	  <a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=up-down-image-slideshow-gallery&amp;ac=set">Widget setting</a>
-	  <a class="button add-new-h2" target="_blank" href="<?php echo WP_udisg_FAV; ?>">Help</a>
+	  <a class="button add-new-h2" href="<?php echo WP_UDISG_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New', 'udisg'); ?></a>
+	  <a class="button add-new-h2" href="<?php echo WP_UDISG_ADMIN_URL; ?>&amp;ac=set"><?php _e('Widget setting', 'udisg'); ?></a>
+	  <a class="button add-new-h2" target="_blank" href="<?php echo WP_UDISG_FAV; ?>"><?php _e('Help', 'udisg'); ?></a>
 	  </h2>
 	  </div>
-	  <br /><p class="description"><?php echo WP_udisg_LINK; ?></p>
+	  <br />
+	<p class="description">
+		<?php _e('Check official website for more information', 'udisg'); ?>
+		<a target="_blank" href="<?php echo WP_UDISG_FAV; ?>"><?php _e('click here', 'udisg'); ?></a>
+	</p>
 	</div>
 </div>

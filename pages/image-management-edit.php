@@ -13,7 +13,7 @@ $result = $wpdb->get_var($sSql);
 
 if ($result != '1')
 {
-	?><div class="error fade"><p><strong>Oops, selected details doesn't exist.</strong></p></div><?php
+	?><div class="error fade"><p><strong><?php _e('Oops, selected details doesnt exist', 'udisg'); ?></strong></p></div><?php
 }
 else
 {
@@ -52,14 +52,14 @@ if (isset($_POST['udisg_form_submit']) && $_POST['udisg_form_submit'] == 'yes')
 	$form['udisg_path'] = isset($_POST['udisg_path']) ? $_POST['udisg_path'] : '';
 	if ($form['udisg_path'] == '')
 	{
-		$udisg_errors[] = __('Please enter the image path.', WP_udisg_UNIQUE_NAME);
+		$udisg_errors[] = __('Please enter the image path.', 'udisg');
 		$udisg_error_found = TRUE;
 	}
 
 	$form['udisg_link'] = isset($_POST['udisg_link']) ? $_POST['udisg_link'] : '';
 	if ($form['udisg_link'] == '')
 	{
-		$udisg_errors[] = __('Please enter the target link.', WP_udisg_UNIQUE_NAME);
+		$udisg_errors[] = __('Please enter the target link.', 'udisg');
 		$udisg_error_found = TRUE;
 	}
 	
@@ -87,7 +87,7 @@ if (isset($_POST['udisg_form_submit']) && $_POST['udisg_form_submit'] == 'yes')
 			);
 		$wpdb->query($sSql);
 		
-		$udisg_success = 'Image details was successfully updated.';
+		$udisg_success = __('Image details was successfully updated.', 'udisg');
 	}
 }
 
@@ -103,35 +103,36 @@ if ($udisg_error_found == FALSE && strlen($udisg_success) > 0)
 {
 ?>
   <div class="updated fade">
-    <p><strong><?php echo $udisg_success; ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=up-down-image-slideshow-gallery">Click here</a> to view the details</strong></p>
+    <p><strong><?php echo $udisg_success; ?> 
+	<a href="<?php echo WP_UDISG_ADMIN_URL; ?>"><?php _e('Click here', 'udisg'); ?></a> <?php _e('to view the details', 'udisg'); ?></strong></p>
   </div>
   <?php
 }
 ?>
-<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/up-down-image-slideshow-gallery/pages/setting.js"></script>
+<script language="JavaScript" src="<?php echo WP_UDISG_PLUGIN_URL; ?>/pages/setting.js"></script>
 <div class="form-wrap">
 	<div id="icon-edit" class="icon32 icon32-posts-post"><br></div>
-	<h2><?php echo WP_udisg_TITLE; ?></h2>
+	<h2><?php _e('Up down image slideshow gallery', 'udisg'); ?></h2>
 	<form name="udisg_form" method="post" action="#" onsubmit="return udisg_submit()"  >
-      <h3>Update image details</h3>
-      <label for="tag-image">Enter image path</label>
+      <h3><?php _e('Update image details', 'udisg'); ?></h3>
+      <label for="tag-image"><?php _e('Enter image path', 'udisg'); ?></label>
       <input name="udisg_path" type="text" id="udisg_path" value="<?php echo $form['udisg_path']; ?>" size="125" />
-      <p>Where is the picture located on the internet</p>
-      <label for="tag-link">Enter target link</label>
+      <p><?php _e('Where is the picture located on the internet', 'udisg'); ?></p>
+      <label for="tag-link"><?php _e('Enter target link', 'udisg'); ?></label>
       <input name="udisg_link" type="text" id="udisg_link" value="<?php echo $form['udisg_link']; ?>" size="125" />
-      <p>When someone clicks on the picture, where do you want to send them</p>
-      <label for="tag-target">Enter target option</label>
+      <p><?php _e('When someone clicks on the picture, where do you want to send them', 'udisg'); ?></p>
+      <label for="tag-target"><?php _e('Enter target option', 'udisg'); ?></label>
       <select name="udisg_target" id="udisg_target">
         <option value='_blank' <?php if($form['udisg_target']=='_blank') { echo 'selected' ; } ?>>_blank</option>
         <option value='_parent' <?php if($form['udisg_target']=='_parent') { echo 'selected' ; } ?>>_parent</option>
         <option value='_self' <?php if($form['udisg_target']=='_self') { echo 'selected' ; } ?>>_self</option>
         <option value='_new' <?php if($form['udisg_target']=='_new') { echo 'selected' ; } ?>>_new</option>
       </select>
-      <p>Do you want to open link in new window?</p>
-      <label for="tag-title">Enter image reference</label>
+      <p><?php _e('Do you want to open link in new window?', 'udisg'); ?></p>
+      <label for="tag-title"><?php _e('Enter image reference', 'udisg'); ?></label>
       <input name="udisg_title" type="text" id="udisg_title" value="<?php echo $form['udisg_title']; ?>" size="125" />
-      <p>Enter image reference. This is only for reference.</p>
-      <label for="tag-select-gallery-group">Select gallery type</label>
+      <p><?php _e('Enter image reference. This is only for reference.', 'udisg'); ?></p>
+      <label for="tag-select-gallery-group"><?php _e('Select gallery type', 'udisg'); ?></label>
       <select name="udisg_type" id="udisg_type">
         <option value='GROUP1' <?php if($form['udisg_type']=='GROUP1') { echo 'selected' ; } ?>>Group1</option>
         <option value='GROUP2' <?php if($form['udisg_type']=='GROUP2') { echo 'selected' ; } ?>>Group2</option>
@@ -144,27 +145,30 @@ if ($udisg_error_found == FALSE && strlen($udisg_success) > 0)
         <option value='GROUP9' <?php if($form['udisg_type']=='GROUP9') { echo 'selected' ; } ?>>Group9</option>
         <option value='GROUP0' <?php if($form['udisg_type']=='GROUP0') { echo 'selected' ; } ?>>Group0</option>
 		<option value='Widget' <?php if($form['udisg_type']=='Widget') { echo 'selected' ; } ?>>Widget</option>
-		<option value='sample' <?php if($form['udisg_type']=='Sample') { echo 'selected' ; } ?>>Sample</option>
+		<option value='Sample' <?php if($form['udisg_type']=='Sample') { echo 'selected' ; } ?>>Sample</option>
       </select>
-      <p>This is to group the images. Select your slideshow group. </p>
-      <label for="tag-display-status">Display status</label>
+      <p><?php _e('This is to group the images. Select your slideshow group.', 'udisg'); ?></p>
+      <label for="tag-display-status"><?php _e('Display status', 'udisg'); ?></label>
       <select name="udisg_status" id="udisg_status">
         <option value='YES' <?php if($form['udisg_status']=='YES') { echo 'selected' ; } ?>>Yes</option>
         <option value='NO' <?php if($form['udisg_status']=='NO') { echo 'selected' ; } ?>>No</option>
       </select>
-      <p>Do you want the picture to show in your galler?</p>
-      <label for="tag-display-order">Display order</label>
+      <p><?php _e('Do you want the picture to show in your galler?', 'udisg'); ?></p>
+      <label for="tag-display-order"><?php _e('Display order', 'udisg'); ?></label>
       <input name="udisg_order" type="text" id="udisg_order" size="10" value="<?php echo $form['udisg_order']; ?>" maxlength="3" />
-      <p>What order should the picture be played in. should it come 1st, 2nd, 3rd, etc.</p>
+      <p><?php _e('What order should the picture be played in. should it come 1st, 2nd, 3rd, etc.', 'udisg'); ?></p>
       <input name="udisg_id" id="udisg_id" type="hidden" value="">
       <input type="hidden" name="udisg_form_submit" value="yes"/>
       <p class="submit">
-        <input name="publish" lang="publish" class="button-primary" value="Update Details" type="submit" />
-        <input name="publish" lang="publish" class="button-primary" onclick="udisg_redirect()" value="Cancel" type="button" />
-        <input name="Help" lang="publish" class="button-primary" onclick="udisg_help()" value="Help" type="button" />
+        <input name="publish" lang="publish" class="button-primary" value="<?php _e('Submit', 'udisg'); ?>" type="submit" />
+        <input name="publish" lang="publish" class="button-primary" onclick="udisg_redirect()" value="<?php _e('Cancel', 'udisg'); ?>" type="button" />
+        <input name="Help" lang="publish" class="button-primary" onclick="udisg_help()" value="<?php _e('Help', 'udisg'); ?>" type="button" />
       </p>
 	  <?php wp_nonce_field('udisg_form_edit'); ?>
     </form>
 </div>
-<p class="description"><?php echo WP_udisg_LINK; ?></p>
+<p class="description">
+	<?php _e('Check official website for more information', 'udisg'); ?>
+	<a target="_blank" href="<?php echo WP_UDISG_FAV; ?>"><?php _e('click here', 'udisg'); ?></a>
+</p>
 </div>

@@ -2,8 +2,8 @@
   <div class="form-wrap">
     <div id="icon-edit" class="icon32 icon32-posts-post"><br>
     </div>
-    <h2><?php echo WP_udisg_TITLE; ?></h2>
-	<h3>Widget setting</h3>
+    <h2><?php _e('Up down image slideshow gallery', 'udisg'); ?></h2>
+	<h3><?php _e('Widget setting', 'udisg'); ?></h3>
     <?php
 	$udisg_title = get_option('udisg_title');
 	$udisg_width = get_option('udisg_width');
@@ -15,7 +15,7 @@
 	$udisg_random = get_option('udisg_random');
 	$udisg_type = get_option('udisg_type');
 	
-	if (@$_POST['udisg_submit']) 
+	if (isset($_POST['udisg_submit'])) 
 	{
 		//	Just security thingy that wordpress offers us
 		check_admin_referer('udisg_form_setting');
@@ -42,47 +42,47 @@
 		
 		?>
 		<div class="updated fade">
-			<p><strong>Details successfully updated.</strong></p>
+			<p><strong><?php _e('Details successfully updated.', 'udisg'); ?></strong></p>
 		</div>
 		<?php
 	}
 	?>
-	<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/up-down-image-slideshow-gallery/pages/setting.js"></script>
+	<script language="JavaScript" src="<?php echo WP_UDISG_PLUGIN_URL; ?>/pages/setting.js"></script>
     <form name="udisg_form" method="post" action="">
       
-	  <label for="tag-title">Enter widget title</label>
+	  <label for="tag-title"><?php _e('Enter widget title', 'udisg'); ?></label>
       <input name="udisg_title" id="udisg_title" type="text" value="<?php echo $udisg_title; ?>" size="80" />
-      <p>Enter widget title, Only for widget.</p>
+      <p><?php _e('Enter widget title, Only for widget.', 'udisg'); ?></p>
       
-	  <label for="tag-width">Width (Only number)</label>
+	  <label for="tag-width"><?php _e('Width (Only number)', 'udisg'); ?></label>
       <input name="udisg_width" id="udisg_width" type="text" value="<?php echo $udisg_width; ?>" />
-      <p>Widget Width (only number). (Example: 250)</p>
+      <p><?php _e('Widget Width (only number). (Example: 250)', 'udisg'); ?></p>
       
-	  <label for="tag-height">Height of each image</label>
+	  <label for="tag-height"><?php _e('Height of each image', 'udisg'); ?></label>
       <input name="udisg_height" id="udisg_height" type="text" value="<?php echo $udisg_height; ?>" />
-      <p>Widget Height (only number). (Example: 200)</p>
+      <p><?php _e('Widget Height (only number). (Example: 200)', 'udisg'); ?></p>
 	  
-	  <label for="tag-height">Pause</label>
+	  <label for="tag-height"><?php _e('Pause', 'udisg'); ?></label>
       <input name="udisg_pause" id="udisg_pause" type="text" value="<?php echo $udisg_pause; ?>" />
-      <p>Only Number / Pause time of the slideshow in milliseconds.</p>
+      <p><?php _e('Only Number / Pause time of the slideshow in milliseconds.', 'udisg'); ?></p>
 	  
-	  <label for="tag-height">Cycles</label>
+	  <label for="tag-height"><?php _e('Cycles', 'udisg'); ?></label>
       <input name="udisg_cycles" id="udisg_cycles" type="text" value="<?php echo $udisg_cycles; ?>" />
-      <p>Gallery will automatically start the slideshow and it will stop number of cycle mentioned in this property. (only number)</p>
+      <p><?php _e('Gallery will automatically start the slideshow and it will stop number of cycle mentioned in this property. (only number)', 'udisg'); ?></p>
 	  
-	  <label for="tag-height">Persist</label>
+	  <label for="tag-height"><?php _e('Persist', 'udisg'); ?></label>
       <input name="udisg_persist" id="udisg_persist" type="text" value="<?php echo $udisg_persist; ?>" />
       <p></p>
 	  
-	  <label for="tag-height">Slide duration</label>
+	  <label for="tag-height"><?php _e('Slide duration', 'udisg'); ?></label>
       <input name="udisg_slideduration" id="udisg_slideduration" type="text" value="<?php echo $udisg_slideduration; ?>" />
-      <p>Slideshow transition duration in milliseconds.</p>
+      <p><?php _e('Slideshow transition duration in milliseconds.', 'udisg'); ?></p>
 	  
-	  <label for="tag-height">Random</label>
+	  <label for="tag-height"><?php _e('Random', 'udisg'); ?></label>
       <input name="udisg_random" id="udisg_random" type="text" value="<?php echo $udisg_random; ?>" />
-      <p>(YES/NO)</p>
+      <p><?php _e('(YES/NO)', 'udisg'); ?></p>
       
-	  <label for="tag-height">Select your gallery group (Gallery  Type)</label>
+	  <label for="tag-height"><?php _e('Select your gallery group (Gallery  Type)', 'udisg'); ?></label>
 	  <select name="udisg_type" id="udisg_type">
         <option value='GROUP1' <?php if($udisg_type=='GROUP1') { echo 'selected' ; } ?>>Group1</option>
         <option value='GROUP2' <?php if($udisg_type=='GROUP2') { echo 'selected' ; } ?>>Group2</option>
@@ -95,15 +95,19 @@
         <option value='GROUP9' <?php if($udisg_type=='GROUP9') { echo 'selected' ; } ?>>Group9</option>
         <option value='GROUP0' <?php if($udisg_type=='GROUP0') { echo 'selected' ; } ?>>Group0</option>
 		<option value='Widget' <?php if($udisg_type=='Widget') { echo 'selected' ; } ?>>Widget</option>
-		<option value='sample' <?php if($udisg_type=='Sample') { echo 'selected' ; } ?>>Sample</option>
+		<option value='Sample' <?php if($udisg_type=='Sample') { echo 'selected' ; } ?>>Sample</option>
       </select>
-      <p>This field is to group the images. Select your group name to fetch the images for widget.</p>
+      <p><?php _e('This field is to group the images. Select your group name to fetch the images for widget.', 'udisg'); ?></p>
       
-	  <input name="udisg_submit" id="udisg_submit" class="button-primary" value="Submit" type="submit" />
-	  <input name="publish" lang="publish" class="button-primary" onclick="udisg_redirect()" value="Cancel" type="button" />
-        <input name="Help" lang="publish" class="button-primary" onclick="udisg_help()" value="Help" type="button" />
+	  <input name="udisg_submit" id="udisg_submit" class="button-primary" value="<?php _e('Submit', 'udisg'); ?>" type="submit" />
+	  <input name="publish" lang="publish" class="button-primary" onclick="udisg_redirect()" value="<?php _e('Cancel', 'udisg'); ?>" type="button" />
+        <input name="Help" lang="publish" class="button-primary" onclick="udisg_help()" value="<?php _e('Help', 'udisg'); ?>" type="button" />
 	  <?php wp_nonce_field('udisg_form_setting'); ?>
     </form>
   </div>
-  <br /><p class="description"><?php echo WP_udisg_LINK; ?></p>
+<br />
+<p class="description">
+	<?php _e('Check official website for more information', 'udisg'); ?>
+	<a target="_blank" href="<?php echo WP_UDISG_FAV; ?>"><?php _e('click here', 'udisg'); ?></a>
+</p>
 </div>
