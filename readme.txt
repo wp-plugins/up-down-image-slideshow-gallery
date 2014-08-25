@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-ima
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
 Tags:  image, slideshow, gallery 
 Requires at least: 3.4
-Tested up to: 3.9
-Stable tag: 10.2
+Tested up to: 4.0
+Stable tag: 10.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -33,11 +33,7 @@ Up down image slideshow gallery lets showcase images in a vertical move style. S
 
 We have three option to install and configure this Up down image slideshow gallery plugin. 
 
-http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
-
 == Installation ==	
-
-**Installation Instruction & Configuration**  	
 
 **Method 1**	
 
@@ -69,10 +65,7 @@ Q5) Where to update the duration of transition?
 
 Q6) Where to update the pause time between images?
 
-Click the below link to see answer for all questions!			
 More info : [click to go](http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/)		
-
-http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/	
 
 == Screenshots ==
 
@@ -81,6 +74,10 @@ http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow
 2. Admin Page. http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
 
 == Upgrade Notice ==
+
+= 10.3 =
+
+1. Tested up to 4.0
 
 = 10.2 =
 
@@ -148,6 +145,10 @@ Javascript added as per W3C standard.
 First version		
 
 == Changelog ==
+
+= 10.3 =
+
+1. Tested up to 4.0
 
 = 10.2 =
 
