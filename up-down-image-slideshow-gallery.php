@@ -4,7 +4,7 @@ Plugin Name: Up down image slideshow gallery
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
 Description: Up down image slideshow gallery lets showcase images in a vertical move style. Single image at a time and pull one by one continually. This slideshow will pause on mouse over. The speed of the plugin gallery is customizable. Persistence of last viewed image supported, so when the user reloads the page, the slideshow continues from the last image.
 Author: Gopi Ramasamy
-Version: 10.3
+Version: 10.4
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/
 Tags: slidshow, gallery
