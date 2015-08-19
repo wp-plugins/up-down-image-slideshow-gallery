@@ -87,16 +87,43 @@ if ($udisg_error_found == FALSE && strlen($udisg_success) > 0)
 	}
 ?>
 <script language="JavaScript" src="<?php echo WP_UDISG_PLUGIN_URL; ?>/pages/setting.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    $('#upload-btn').click(function(e) {
+        e.preventDefault();
+        var image = wp.media({ 
+            title: 'Upload Image',
+            // mutiple: true if you want to upload multiple files at once
+            multiple: false
+        }).open()
+        .on('select', function(e){
+            // This will return the selected image from the Media Uploader, the result is an object
+            var uploaded_image = image.state().get('selection').first();
+            // We convert uploaded_image to a JSON object to make accessing it easier
+            // Output to the console uploaded_image
+            console.log(uploaded_image);
+            var img_imageurl = uploaded_image.toJSON().url;
+            // Let's assign the url value to the input field
+            $('#udisg_path').val(img_imageurl);
+        });
+    });
+});
+</script>
+<?php
+wp_enqueue_script('jquery'); // jQuery
+wp_enqueue_media(); // This will enqueue the Media Uploader script
+?>
 <div class="form-wrap">
 	<div id="icon-edit" class="icon32 icon32-posts-post"><br></div>
 	<h2><?php _e('Up down image slideshow gallery', 'udisg'); ?></h2>
 	<form name="udisg_form" method="post" action="#" onsubmit="return udisg_submit()"  >
       <h3><?php _e('Add new image details', 'udisg'); ?></h3>
       <label for="tag-image"><?php _e('Enter image path (URL)', 'udisg'); ?></label>
-      <input name="udisg_path" type="text" id="udisg_path" value="" size="125" />
+      <input name="udisg_path" type="text" id="udisg_path" value="" size="80" />
+	  <input type="button" name="upload-btn" id="upload-btn" class="button-secondary" value="Upload Image">
       <p><?php _e('Where is the picture located on the internet', 'udisg'); ?> (ex: http://www.gopiplus.com/work/wp-content/uploads/pluginimages/250x167/250x167_2.jpg)</p>
       <label for="tag-link"><?php _e('Enter target link', 'udisg'); ?></label>
-      <input name="udisg_link" type="text" id="udisg_link" value="" size="125" />
+      <input name="udisg_link" type="text" id="udisg_link" value="#" size="80" />
       <p><?php _e('When someone clicks on the picture, where do you want to send them', 'udisg'); ?></p>
       <label for="tag-target"><?php _e('Enter target option', 'udisg'); ?></label>
       <select name="udisg_target" id="udisg_target">
@@ -107,7 +134,7 @@ if ($udisg_error_found == FALSE && strlen($udisg_success) > 0)
       </select>
       <p><?php _e('Do you want to open link in new window?', 'udisg'); ?></p>
       <label for="tag-title"><?php _e('Enter image reference', 'udisg'); ?></label>
-      <input name="udisg_title" type="text" id="udisg_title" value="" size="125" />
+      <input name="udisg_title" type="text" id="udisg_title" value="" size="80" />
       <p><?php _e('Enter image reference. This is only for reference.', 'udisg'); ?></p>
       <label for="tag-select-gallery-group"><?php _e('Select gallery type', 'udisg'); ?></label>
       <select name="udisg_type" id="udisg_type">
@@ -132,7 +159,7 @@ if ($udisg_error_found == FALSE && strlen($udisg_success) > 0)
       </select>
       <p><?php _e('Do you want the picture to show in your galler?', 'udisg'); ?></p>
       <label for="tag-display-order"><?php _e('Display order', 'udisg'); ?></label>
-      <input name="udisg_order" type="text" id="udisg_order" size="10" value="" maxlength="3" />
+      <input name="udisg_order" type="text" id="udisg_order" size="10" value="1" maxlength="3" />
       <p><?php _e('What order should the picture be played in. should it come 1st, 2nd, 3rd, etc.', 'udisg'); ?></p>
       <input name="udisg_id" id="udisg_id" type="hidden" value="">
       <input type="hidden" name="udisg_form_submit" value="yes"/>
